@@ -1,49 +1,55 @@
 export class WebhookPayloadDto {
-  action: string;
-  actor: {
-    email: string;
-    id: string;
-  };
-  created_at: string;
   id: string;
   data: {
-    archived_at: string;
-    buildpack_provided_description: string;
-    build_stack: {
-      id: string;
-      name: string;
-    };
-    created_at: string;
     id: string;
-    git_url: string;
-    maintenance: false;
-    name: string;
-    owner: {
+    app: {
+      id: string;
+      name: string;
+      web_url?: string;
+    };
+    git_url?: string;
+    slug: {
+      id: string;
+      commit: string;
+      commit_description: string;
+    };
+    user: {
+      id: string;
       email: string;
-      id: string;
     };
-    region: {
+    stack: string;
+    status: string;
+    release: {
       id: string;
-      name: string;
+      version: number;
     };
-    organization: string;
-    space: string;
-    released_at: string;
-    repo_size: number;
-    slug_size: string;
-    stack: {
-      id: string;
-      name: string;
-    };
+    metadata: any;
+    buildpacks: [
+      {
+        url: string;
+      },
+    ];
+    created_at: string;
     updated_at: string;
-    web_url: string;
+    source_blob: {
+      url: string;
+      version: string;
+      checksum: null;
+    };
+    output_stream_url: string;
   };
-  previous_data: any;
-  published_at: string;
-  resource: string;
-  sequence: string;
-  updated_at: string;
+  actor: {
+    id: string;
+    email: string;
+  };
+  action: string;
   version: string;
+  resource: string;
+  sequence: null;
+  created_at: string;
+  updated_at: string;
+  published_at: string;
+  previous_data: {};
   webhook_metadata: {
     attempt: {
       id: string;

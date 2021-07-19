@@ -19,10 +19,18 @@ export class DiscordService {
           author: {
             name: payload.actor.email,
           },
-          title: `There is a new deploy in process for ${payload.data.name}`,
-          url: payload.data.web_url,
-          description: `Repository: [${payload.data.git_url}](${payload.data.git_url})`,
+          title: `There is a new deploy in process for ${payload.data.app.name}`,
+          url: payload.data.app.web_url,
+          description: `Commit: ${
+            payload.data.slug.commit_description || payload.data.slug.commit
+          }`,
           color: 7762880,
+          footer: {
+            text:
+              payload.data.status === 'succeeded'
+                ? 'Status: :white_check_mark:'
+                : 'Status: :warning:',
+          },
         },
       ],
     });
