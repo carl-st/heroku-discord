@@ -27,9 +27,8 @@ export class DiscordService {
           color: 7762880,
           footer: {
             text:
-              payload.data.status === 'succeeded'
-                ? 'Status: :white_check_mark:'
-                : 'Status: :warning:',
+              payload.data.status !== undefined &&
+              `Status: ${payload.data.status}`,
           },
         },
       ],
