@@ -19,16 +19,16 @@ export class DiscordService {
           author: {
             name: payload.actor.email,
           },
-          title: `There is a new deploy in process for ${payload.data.app.name}`,
+          title: `New deploy process for ${payload.data.app.name} has been finished`,
           url: payload.data.app.web_url,
-          description: `Commit: ${
-            payload.data.slug.commit_description || payload.data.slug.commit
-          }`,
+          description:
+            payload.data.status !== undefined &&
+            `Status: ${payload.data.status}`,
           color: 7762880,
           footer: {
-            text:
-              payload.data.status !== undefined &&
-              `Status: ${payload.data.status}`,
+            text: `Commit: ${
+              payload.data.slug.commit_description || payload.data.slug.commit
+            }`,
           },
         },
       ],
@@ -42,7 +42,6 @@ export class DiscordService {
       })
       .pipe(
         map((response) => {
-          // this.logger.log(resąponse);
           return response.data;
         }),
         catchError((e) => {
